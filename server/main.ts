@@ -3,6 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { config } from './environment';
 import { info } from './library/logger';
+import { LoggingInterceptor } from './shared/logging.interceptor';
 
 async function bootstrap() {
   const { appName, port, version } = config;
@@ -24,6 +25,7 @@ async function bootstrap() {
     customCss: '.swagger-ui .topbar{display:none}',
   });
 
+  app.useGlobalInterceptors(new LoggingInterceptor());
   app.setGlobalPrefix(version);
 
   await app.listen(port, () => {
