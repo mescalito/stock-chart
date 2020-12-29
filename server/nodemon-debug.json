@@ -1,0 +1,6 @@
+{
+  "watch": ["server"],
+  "ext": "ts,graphql",
+  "ignore": ["server/**/*.spec.ts"],
+  "exec": "node --inspect-brk -r ts-node/register --project tsconfig.server.json -r tsconfig-paths/register server/main.ts"
+}
