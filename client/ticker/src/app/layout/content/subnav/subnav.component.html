@@ -1,0 +1,5 @@
+<st-tab
+  [tabs]="(data$ | async).children"
+  *ngIf="(data$ | async)?.children?.length"
+></st-tab>
+<p class="today">{{ date | date: 'fullDate' }}</p>

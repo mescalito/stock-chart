@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { GeneralService } from '../_services/general.service';
 
 @Component({
   selector: 'st-layout',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  @ViewChild('drawer') drawer;
+  sliderToggle$ = this.general.slider$;
+  isDarkTheme$ = this.general.darkTheme$;
 
-  ngOnInit(): void {}
+  constructor(private general: GeneralService) {}
+
+  ngOnInit(): void {
+    this.sliderToggle$.subscribe(value => {
+      if (value) {
+        this.drawer.toggle();
+      }
+    });
+  }
 }

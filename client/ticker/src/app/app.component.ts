@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppStatus } from '@st/interfaces';
 import { filter } from 'rxjs/operators';
-import { GeneralService } from './_services/general.service';
+import { SelectStatus } from './setting/+state/config.selector';
+import { LoadConfig } from './setting/+state/config.action';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'st-root',
@@ -11,12 +13,16 @@ import { GeneralService } from './_services/general.service';
   `,
   styles: [],
 })
-export class AppComponent {
-  appStatus$: Observable<AppStatus> = this.generalService.appStatus$;
+export class AppComponent implements OnInit {
+  appStatus$: Observable<AppStatus> = this.store.select(SelectStatus);
 
-  constructor(private generalService: GeneralService) {
+  constructor(private store: Store) {
     this.appStatus$.pipe(filter(val => !!val)).subscribe(status => {
       console.info(status?.message);
     });
+  }
+
+  ngOnInit() {
+    this.store.dispatch(LoadConfig());
   }
 }

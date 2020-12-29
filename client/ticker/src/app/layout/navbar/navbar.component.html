@@ -1,0 +1,17 @@
+<img
+  class="ticker-logo"
+  src="assets/images/ticker-logo.png"
+  alt="stock-ticker"
+/>
+<ul>
+  <li
+    [routerLink]="['/dashboard']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: false }"
+  >
+    <img src="assets/icons/dashboard.svg" alt="stock-ticker" />
+  </li>
+  <li [routerLink]="['/setting']" routerLinkActive="active">
+    <img src="assets/icons/setting.svg" alt="settings" />
+  </li>
+</ul>
