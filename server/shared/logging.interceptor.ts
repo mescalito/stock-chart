@@ -30,17 +30,14 @@ export class LoggingInterceptor implements NestInterceptor {
     } else {
       const ctx: any = GqlExecutionContext.create(context);
       const resolverName = ctx.constructorRef.name;
-      const info = ctx.getInfo();
-      info(
-        `${info.parentType} "${info.fieldName}" ${Date.now() - now}ms`,
-        resolverName,
-      );
+      const ctxInfo = ctx.getInfo();
       return next
         .handle()
         .pipe(
           tap(() =>
             info(
-              `${info.parentType} "${info.fieldName}" ${Date.now() - now}ms`,
+              `${ctxInfo.parentType} "${ctxInfo.fieldName}" ${Date.now() -
+                now}ms`,
               resolverName,
             ),
           ),

@@ -1,13 +1,15 @@
 type Query {
   tickers: [Ticker!]
-  ticker(symbol: String!): Ticker
 }
 
 type Ticker {
-  id: ID!
+  open: Float!
+  high: Float!
+  low: Float!
+  last: Float!
+  close: Float!
+  volume: Float!
+  date: String!
   symbol: String!
   exchange: String!
-  open: Float!
-  last: Float!
-  date: String!
 }

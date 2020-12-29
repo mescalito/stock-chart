@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TickersEntity } from './ticker.entity';
+import { HttpModule, Module } from '@nestjs/common';
+import { TickersResolver } from './tickers.resolvers';
+import { TickersService } from './tickers.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TickersEntity])],
-  providers: [],
+  imports: [HttpModule],
+  providers: [TickersService, TickersResolver],
 })
 export class TickersModule {}
