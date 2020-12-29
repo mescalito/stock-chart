@@ -1,12 +1,33 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { config } from './environment';
+
+const {
+  dbHost: host,
+  dbPort: port,
+  dbUser: username,
+  dbPass: password,
+  dbName: database,
+} = config;
 
 describe('AppController', () => {
   let appController: AppController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
+      imports: [
+        TypeOrmModule.forRoot({
+          type: 'postgres',
+          host,
+          port,
+          username,
+          password,
+          database,
+          entities: ['**/*.entity{.ts,.js}'],
+        }),
+      ],
       controllers: [AppController],
       providers: [AppService],
     }).compile();
@@ -15,8 +36,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return running status for health check', () => {
+      expect(appController.healthCheck()?.message).toBe(
+        'exchange is running in port 3000 and db is connected',
+      );
     });
   });
 });
