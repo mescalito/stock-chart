@@ -9,7 +9,8 @@
     (focus)="matcher.focused=true"
     (blur)="matcher.focused=false"
     matInput
-    autocomplete="off"
+    [matAutocomplete]="auto"
+    [matAutocompleteDisabled]="!matComplete"
     [attr.maxlength]="length?length:null"
     [required]="required"
     [formControl]="control"
@@ -39,4 +40,14 @@
   <mat-error *ngIf="control.errors && !matcher.focused">
     <span [innerHTML]="errorHint()"></span>
   </mat-error>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let stock of filteredStocks|async"
+      [value]="stock.value"
+    >
+      <span>{{stock.value}}</span> | <span>{{stock.displayValue}}</span> |
+      <small>Last Price: {{stock.lastPrice}}</small>
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>

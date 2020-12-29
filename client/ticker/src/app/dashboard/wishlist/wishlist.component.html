@@ -1,11 +1,14 @@
 <div class="workarea">
-  <form>
-    <div class="row between-xs">
-      <st-select
-        [options]="selectOptions"
-        class="col-sm-5"
+  <form [formGroup]="wishlistForm">
+    <div class="row start-lg middle-xs">
+      <st-input
+        class="col-xs-10 col-lg-4"
+        [matComplete]="true"
+        [stocks]="mockStocks"
+        [control]="wishlistForm.controls['symbol']"
         name="Select a stock"
-      ></st-select>
+      ></st-input>
+      <st-button icon="add" type="icon"></st-button>
     </div>
   </form>
 </div>

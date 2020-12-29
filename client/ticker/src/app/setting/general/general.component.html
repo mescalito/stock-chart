@@ -1,0 +1,60 @@
+<div class="workarea">
+  <form [formGroup]="generalForm">
+    <div class="row">
+      <h2>Stock Polling Options</h2>
+    </div>
+    <div class="row start-lg">
+      <st-input
+        class="col-xs-12 col-lg-2"
+        type="number"
+        [control]="generalForm.controls['cpt']"
+        hint="Add Value in <strong>percentage %</strong>"
+        name="Change Percentage Thereshold"
+      ></st-input>
+      <st-input
+        class="col-xs-12 col-lg-2"
+        type="number"
+        [control]="generalForm.controls['lowPollingInterval']"
+        hint="Add Value in <strong>minutes</strong>"
+        name="Low Polling Interval"
+      ></st-input>
+      <st-input
+        class="col-xs-12 col-lg-2"
+        type="number"
+        [control]="generalForm.controls['defaultPollingInterval']"
+        hint="Add Value in <strong>percentage %</strong>"
+        name="Default Polling Interval"
+      ></st-input>
+      <st-input
+        class="col-xs-12 col-lg-2"
+        type="number"
+        [control]="generalForm.controls['highPollingInterval']"
+        hint="Add Value in <strong>minutes</strong>"
+        name="High Polling Interval"
+      ></st-input>
+    </div>
+    <div class="row">
+      <h2>Platform and Exchange</h2>
+    </div>
+    <div class="row start-lg">
+      <st-select
+        [options]="platformOptions"
+        [control]="generalForm.controls['stockApiPlatform']"
+        class="col-xs-12 col-lg-2"
+        name="Stock api platform"
+      ></st-select>
+      <st-select
+        [options]="exchangeOptions"
+        [control]="generalForm.controls['exchangeMarket']"
+        class="col-xs-12 col-lg-2"
+        name="Exchange Market"
+      ></st-select>
+      <st-input
+        class="col-xs-12 col-lg-2"
+        [control]="generalForm.controls['accessKey']"
+        hint="The key will be tested for <strong>validity</strong>"
+        name="Access Key"
+      ></st-input>
+    </div>
+  </form>
+</div>

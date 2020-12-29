@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'st-wishlist',
@@ -6,13 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.scss'],
 })
 export class WishlistComponent implements OnInit {
-  selectOptions = [
-    { value: 'AAPL', displayValue: 'Apple Inc' },
-    { value: 'GOOGL', displayValue: 'Alphabet Inc Class A' },
-    { value: 'AMZN', displayValue: 'Amazon.com, Inc.' },
+  mockStocks = [
+    { value: 'AAPL', displayValue: 'Apple Inc', lastPrice: '131.97 USD' },
+    {
+      value: 'GOOGL',
+      displayValue: 'Alphabet Inc Class A',
+      lastPrice: '1,734.16 USD',
+    },
+    {
+      value: 'AMZN',
+      displayValue: 'Amazon.com, Inc.',
+      lastPrice: '3,172.69 USD',
+    },
   ];
+  wishlistForm: FormGroup;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.wishlistForm = this.fb.group({
+      symbol: '',
+    });
+  }
 }

@@ -1,0 +1,9 @@
+@import '_mixins';
+
+:host {
+  margin-right: calc(#{size(margin, lg)} * 2);
+  @include mobile {
+    margin-right: 0;
+    margin-bottom: calc(#{size(margin, lg)} * 3);
+  }
+}
