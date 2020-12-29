@@ -1,19 +1,3 @@
-export class StockDto {
-  id: string;
+import { Stock } from 'server/graphql.schema';
 
-  exchange: string;
-
-  symbol: string;
-
-  polling: number;
-
-  isActive: boolean;
-
-  last: number;
-
-  open: number;
-
-  close: number;
-
-  date: Date;
-}
+export class StockDto extends Stock {}

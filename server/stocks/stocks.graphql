@@ -1,0 +1,25 @@
+type Query {
+  stocks: [Stock!]
+}
+
+type Mutation {
+  addStock(exchange: String!, symbol: String!): Stock!
+  deleteStock(id: ID!): Boolean
+}
+
+enum Polling {
+  LONG
+  SHORT
+  DEFAULT
+}
+
+type Stock {
+  id: ID!
+  exchange: String!
+  symbol: String!
+  polling: Polling!
+  isActive: Boolean!
+  last: Float!
+  open: Float!
+  close: Float!
+}

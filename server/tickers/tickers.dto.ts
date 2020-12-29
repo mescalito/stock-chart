@@ -1,19 +1,3 @@
-export class TickerDto {
-  open: string;
+import { Ticker } from 'server/graphql.schema';
 
-  high: string;
-
-  low: string;
-
-  last: string;
-
-  close: string;
-
-  volume: string;
-
-  date: string;
-
-  symbol: string;
-
-  exchange: string;
-}
+export class TickerDto extends Ticker {}

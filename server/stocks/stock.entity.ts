@@ -11,9 +11,9 @@ export class StocksEntity extends Base {
   symbol: string;
 
   @Column({ type: 'enum', enum: Polling, default: Polling.DEFAULT })
-  polling: number;
+  polling: Polling;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: true })
   isActive: boolean;
 
   @Column({ type: 'float' })
@@ -24,7 +24,4 @@ export class StocksEntity extends Base {
 
   @Column({ type: 'float' })
   close: number;
-
-  @Column({ type: 'timestamptz' })
-  date: Date;
 }

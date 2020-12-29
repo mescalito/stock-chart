@@ -26,6 +26,7 @@ const {
       username,
       password,
       database,
+      synchronize: true,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       migrationsTableName: 'migration',
       migrations: ['server/migration/*.ts'],

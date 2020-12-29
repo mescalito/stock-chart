@@ -3,11 +3,11 @@ import { Observable } from 'rxjs';
 import { TickerDto } from './tickers.dto';
 import { TickersService } from './tickers.service';
 
-@Resolver('ticker')
+@Resolver('Ticker')
 export class TickersResolver {
   constructor(private tickersService: TickersService) {}
 
-  @Query()
+  @Query('tickers')
   tickers(): Observable<TickerDto[]> {
     return this.tickersService.getTickers();
   }
