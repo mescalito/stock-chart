@@ -3,7 +3,7 @@ export enum ErrorCode {
 }
 
 export enum Polling {
-  LONG = 'long',
-  SHORT = 'short',
-  DEFAULT = 'default',
+  long = 'long',
+  short = 'short',
+  default = 'default',
 }

@@ -10,7 +10,7 @@ export class StocksEntity extends Base {
   @Column({ type: 'text' })
   symbol: string;
 
-  @Column({ type: 'enum', enum: Polling, default: Polling.DEFAULT })
+  @Column({ type: 'enum', enum: Polling, default: Polling.default })
   polling: Polling;
 
   @Column({ type: 'boolean', default: true })

@@ -1,5 +1,10 @@
 type Query {
-  tickers: [Ticker!]
+  tickers(symbol: String!, limit: Int): [Ticker!]
+  tickerUnsubscribe(symbol: String!): Boolean
+}
+
+type Subscription {
+  tickerSubscribe(symbol: String!): Ticker!
 }
 
 type Ticker {

@@ -8,9 +8,9 @@ type Mutation {
 }
 
 enum Polling {
-  LONG
-  SHORT
-  DEFAULT
+  long
+  short
+  default
 }
 
 type Stock {

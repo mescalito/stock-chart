@@ -7,6 +7,7 @@ import { config } from './environment';
 import { join } from 'path';
 import { StocksModule } from './stocks/stocks.module';
 import { TickersModule } from './tickers/tickers.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 const {
   dbHost: host,
@@ -39,11 +40,13 @@ const {
     TickersModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
+      installSubscriptionHandlers: true,
       definitions: {
         path: join(process.cwd(), 'server/graphql.schema.ts'),
         outputAs: 'class',
       },
     }),
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
