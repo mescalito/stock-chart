@@ -47,6 +47,3 @@ Thumbs.db
 
 #env
 .env
-
-# graphql
-server/graphql.schema.ts

@@ -23,6 +23,7 @@ import { TabControl } from './controls/tab/tab.control';
 import { TextareaControl } from './controls/textarea/textarea.control';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
+import { CardControl } from './controls/card/card.control';
 
 const declareAndExport = [
   LogoComponent,
@@ -36,7 +37,7 @@ const declareAndExport = [
   // RadioControl,
   // LevelControl,
   // ChipControl,
-  // CardControl,
+  CardControl,
   // ChipListControl,
   // DateControl,
   // DateRangeControl,

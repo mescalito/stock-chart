@@ -8,7 +8,18 @@
         [control]="wishlistForm.controls['symbol']"
         name="Select a stock"
       ></st-input>
-      <st-button icon="add" type="icon"></st-button>
+      <st-button icon="add" type="icon" (click)="onSubmit()"></st-button>
+    </div>
+    <div class="row">
+      <st-list
+        [items]="wishList"
+        class="col-sm-8 col-lg-4"
+        [template]="listTemplate"
+      ></st-list>
     </div>
   </form>
 </div>
+
+<ng-template #listTemplate let-content>
+  {{ content.description }}
+</ng-template>

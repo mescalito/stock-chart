@@ -297,7 +297,7 @@
   dependencies:
     tslib "^2.0.0"
 
-"@apollo/client@^3.1.5":
+"@apollo/client@^3.0.0", "@apollo/client@^3.1.5":
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.6.tgz#f359646308167f38d5bc498dfc2344c888400093"
   integrity sha512-XSm/STyNS8aHdDigLLACKNMHwI0qaQmEHWHtTP+jHe/E1wZRnn66VZMMgwKLy2V4uHISHfmiZ4KpUKDPeJAKqg==
@@ -3163,6 +3163,15 @@ anymatch@^3.0.3, anymatch@~3.1.1:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
+
+apollo-angular@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/apollo-angular/-/apollo-angular-2.1.0.tgz#3f94ecf0f7c9900053f1cac9d766290fc6130185"
+  integrity sha512-/Xy6Ki4MrqWoBWf3aJkSQbd1tYm7F9k5KZ+ZsAYx78V+E4E+a8rAe4VfVQkY3kkbF+7mRTzUqszNg/rYyn2NmA==
+  dependencies:
+    extract-files "^9.0.0"
+    semver "^7.0.0"
+    tslib "^2.0.0"
 
 apollo-cache-control@^0.11.1, apollo-cache-control@^0.11.4:
   version "0.11.4"

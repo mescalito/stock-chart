@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-  addStock(exchange: String!, symbol: String!): Stock!
+  addStock(symbol: String!): Stock!
   deleteStock(id: ID!): Boolean
 }
 

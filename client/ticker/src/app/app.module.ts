@@ -15,6 +15,7 @@ import { entityConfig } from './entity-metadata';
 import { reducers, metaReducers } from './+state';
 import { SettingModule } from './setting/setting.module';
 import { environment } from '../environments/environment';
+import { GraphQLModule } from './graphql.module';
 
 const { production } = environment;
 
@@ -38,6 +39,7 @@ const { production } = environment;
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
     SettingModule,
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

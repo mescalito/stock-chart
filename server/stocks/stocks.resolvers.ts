@@ -16,13 +16,10 @@ export class StocksResolver {
   }
 
   @Mutation('addStock')
-  async addStock(
-    @Args('exchange') exchange: string,
-    @Args('symbol') symbol: string,
-  ): Promise<StockDto> {
+  async addStock(@Args('symbol') symbol: string): Promise<StockDto> {
     try {
       const ticker = await this.tickerService.getTickers(symbol).toPromise();
-      const { last, open, close } = ticker[0];
+      const { last, open, close, exchange } = ticker[0];
       const newStock = { exchange, symbol, last, open, close };
       return await this.stocksService.createOne(newStock);
     } catch (error) {
