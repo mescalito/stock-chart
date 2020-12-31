@@ -46,11 +46,12 @@ export class TickersResolver {
 
   createTickerSub(symbol: string): void {
     const defaultPolling = 10;
+    // "*/${defaultPolling} * * * * *" six asterisk refers to seconds
     const job = new CronJob(`*/${defaultPolling} * * * * *`, async () => {
-      // const [lastValue] = await this.tickersService
-      //   .getTickers(symbol)
-      //   .toPromise();
-      const lastValue = {
+      const [lastValue] = await this.tickersService
+        .getTickers(symbol)
+        .toPromise();
+      /*const lastValue = {
         open: 111,
         high: 111,
         low: 111,
@@ -60,12 +61,12 @@ export class TickersResolver {
         date: '2020-12-25T02:00:00+0000',
         symbol: symbol,
         exchange: 'IEXG',
-      };
+      };*/
       pubSub.publish('tickerSubscribe', {
         tickerSubscribe: lastValue,
       });
       // polling algorithm
-      // job.setTime(this.pollingTime(lastValue.open, lastValue.last));
+      job.setTime(this.pollingTime(lastValue.open, lastValue.last));
     });
     this.scheduler.addCronJob(symbol, job);
     job.start();
