@@ -1,3 +1,5 @@
+import { GraphQLModule } from '@nestjs/graphql';
+import { ScheduleModule } from '@nestjs/schedule';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -25,8 +27,9 @@ describe('AppController', () => {
           username,
           password,
           database,
-          entities: ['**/*.entity{.ts,.js}'],
         }),
+        ScheduleModule.forRoot(),
+        GraphQLModule.forRoot(),
       ],
       controllers: [AppController],
       providers: [AppService],

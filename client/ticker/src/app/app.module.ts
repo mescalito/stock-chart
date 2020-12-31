@@ -30,8 +30,8 @@ const { production } = environment;
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
+        strictStateImmutability: false,
+        strictActionImmutability: false,
       },
     }),
     !production ? StoreDevtoolsModule.instrument() : [],

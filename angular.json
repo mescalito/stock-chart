@@ -49,6 +49,11 @@
             "main": "client/ticker/src/main.ts",
             "polyfills": "client/ticker/src/polyfills.ts",
             "tsConfig": "client/ticker/tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "subscriptions-transport-ws",
+              "graphql-tag",
+              "zen-observable"
+            ],
             "aot": true,
             "assets": [
               "client/ticker/src/favicon.ico",

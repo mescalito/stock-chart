@@ -13,8 +13,9 @@
     <div class="row">
       <st-list
         [items]="wishList"
-        class="col-sm-8 col-lg-4"
+        class="col-xs-10 col-lg-4"
         [template]="listTemplate"
+        (primaryAction)="deleteStock($event)"
       ></st-list>
     </div>
   </form>

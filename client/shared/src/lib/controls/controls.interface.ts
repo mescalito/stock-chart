@@ -33,6 +33,8 @@ export interface BtnToggle {
 }
 
 export interface ListItem {
+  id?: string | number;
+  symbol?: string;
   title?: string;
   description?: string;
   content?: AnyPayload;

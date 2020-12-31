@@ -19,7 +19,13 @@ const queryticker = gql`
   }
 `;
 
-const tickerSubscription = gql`
+const tickerUnsubscribe = gql`
+  query tickerUnsubscribe($symbol: String!) {
+    tickerUnsubscribe(symbol: $symbol)
+  }
+`;
+
+const tickerSubscribe = gql`
   subscription tickerSubscribe($symbol: String!) {
     tickerSubscribe(symbol: $symbol) {
       open
@@ -47,16 +53,21 @@ export class TickerService {
       .pipe(map(({ data }) => (data?.tickers?.length ? data.tickers : [])));
   }
 
-  tickerConnection(variables: { symbol: string }) {
+  tickerUnsubscribe(variables: { symbol: string }) {
     return this.apollo
-      .subscribe<{ tickerSubscribe: Ticker[] }>({
-        query: tickerSubscription,
+      .query<{ tickerUnsubscribe: boolean }>({
+        query: tickerUnsubscribe,
         variables,
       })
-      .pipe(
-        map(({ data }) =>
-          data?.tickerSubscribe?.length ? data.tickerSubscribe : [],
-        ),
-      );
+      .pipe(map(({ data }) => data?.tickerUnsubscribe));
+  }
+
+  tickerSubscribe(variables: { symbol: string }) {
+    return this.apollo
+      .subscribe<{ tickerSubscribe: Ticker }>({
+        query: tickerSubscribe,
+        variables,
+      })
+      .pipe(map(({ data }) => data?.tickerSubscribe));
   }
 }

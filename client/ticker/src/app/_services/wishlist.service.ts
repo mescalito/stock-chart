@@ -33,6 +33,12 @@ const addStock = gql`
   }
 `;
 
+const deleteStock = gql`
+  mutation deleteStock($id: ID!) {
+    deleteStock(id: $id)
+  }
+`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -49,5 +55,11 @@ export class WishlistService {
     return this.apollo
       .mutate<{ addStock: StockWishlist }>({ mutation: addStock, variables })
       .pipe(map(({ data }) => data?.addStock));
+  }
+
+  deleteStock(variables: { id: string }) {
+    return this.apollo
+      .mutate<{ deleteStock: boolean }>({ mutation: deleteStock, variables })
+      .pipe(map(({ data }) => data?.deleteStock));
   }
 }

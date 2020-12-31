@@ -51,11 +51,11 @@ export class TickersResolver {
       //   .getTickers(symbol)
       //   .toPromise();
       const lastValue = {
-        open: 131.32,
-        high: 133.46,
-        low: 131.1,
-        last: 131.97,
-        close: 130.96,
+        open: 111,
+        high: 111,
+        low: 111,
+        last: 111,
+        close: 111,
         volume: 54930064.0,
         date: '2020-12-25T02:00:00+0000',
         symbol: symbol,

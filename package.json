@@ -8,6 +8,7 @@
     "server:dev": "ts-node --project tsconfig.server.json -r tsconfig-paths/register server/main.ts | bunyan -o short",
     "server:prod": "node dist/api/main | bunyan -o short",
     "start": "concurrently -c \"green.bold,blue.bold\" -n \"SERVER,TICKER\" \"yarn server:dev\" \"yarn start:client --progress=false --verbose=false\"",
+    "test": "jest --runInBand --detectOpenHandles",
     "format:check": "prettier --check \"server/**/*.ts\" \"test/**/*.ts\" \"client/**/*.ts\"",
     "format": "prettier --write \"server/**/*.ts\" \"test/**/*.ts\" \"client/**/*.ts\"",
     "lint": "eslint \"{server,apps,libs,test}/**/*.ts\" --fix",
