@@ -6,8 +6,13 @@ import { StockWishlist } from '@st/interfaces';
 import { Color } from 'client/shared/src/lib/controls/controls.enum';
 import { ListItem } from 'client/shared/src/lib/controls/controls.interface';
 import { filter } from 'rxjs/operators';
-import { AddStock, LoadWishlist, RemoveStock } from '../+state/stock.action';
-import { SelectWishlist } from '../+state/stock.selector';
+import {
+  AddStock,
+  AddTicker,
+  LoadWishlist,
+  RemoveStock,
+} from '../+state/stock.action';
+import { SelectTicker, SelectWishlist } from '../+state/stock.selector';
 
 @Component({
   selector: 'st-wishlist',
@@ -30,6 +35,7 @@ export class WishlistComponent implements OnInit {
   ];
   wishlistForm: FormGroup;
   wishList$ = this.store.select(SelectWishlist);
+  ticker$ = this.store.select(SelectTicker);
   wishList: ListItem[] = [];
   datalength: number;
   notifySettings: MatSnackBarConfig = {
@@ -65,6 +71,11 @@ export class WishlistComponent implements OnInit {
             primaryAction: { icon: 'clear', color: Color.ERROR },
           }),
         );
+        if (!this.datalength && data.length) {
+          data.forEach(({ symbol }) => {
+            this.store.dispatch(AddTicker({ symbol }));
+          });
+        }
         if (this.datalength < data.length) {
           this._snackBar.open('Stock Added', 'Close', this.notifySettings);
         } else if (this.datalength > data.length) {
@@ -72,6 +83,18 @@ export class WishlistComponent implements OnInit {
         }
         this.datalength = data.length;
       });
+
+    this.ticker$.subscribe(data => {
+      this.wishList = this.wishList.map(stock => {
+        const ticker = data[stock.symbol][0];
+        const { last, open, close } = ticker;
+        return {
+          ...stock,
+          title: `${stock.symbol} - ${last}`,
+          description: `Open: ${open} Close: ${close}`,
+        };
+      });
+    });
   }
 
   ngOnInit(): void {

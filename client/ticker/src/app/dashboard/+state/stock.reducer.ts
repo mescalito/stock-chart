@@ -44,8 +44,9 @@ export const stockReducer = createReducer(
   }),
   on(SuccessSubTicker, (state: StockState, { payload }) => {
     const { symbol } = payload;
-    const ticker = [payload, ...(state.ticker[symbol] || [])];
-    state.ticker[symbol] = ticker;
-    return state;
+    const tickers = Object.assign({}, state.ticker);
+    const newTicker = [payload, ...(tickers[symbol] || [])];
+    tickers[symbol] = Object.assign([], newTicker);
+    return { ...state, ...{ ticker: tickers } };
   }),
 );
